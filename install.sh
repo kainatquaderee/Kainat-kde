@@ -135,25 +135,25 @@ install() {
 
 
   if [[ "$round" == '-round' ]]; then
-    cp -r ${SRC_DIR}/aurorae/${name}${round}${color}${solid}                           ${AURORAE_DIR}
-    cp -r ${SRC_DIR}/aurorae/${name}${round}${color}-normal                            ${AURORAE_DIR}
+    cp -r ${SRC_DIR}/aurorae/Fluent${round}${color}${solid}                           ${AURORAE_DIR}
+    cp -r ${SRC_DIR}/aurorae/Fluent${round}${color}-normal                            ${AURORAE_DIR}
   else
-    cp -r ${SRC_DIR}/aurorae/${name}${color}                                           ${AURORAE_DIR}
+    cp -r ${SRC_DIR}/aurorae/Fluent${color}                                           ${AURORAE_DIR}
   fi
 
-  cp -r ${SRC_DIR}/wallpaper/${name}${theme}                                           ${WALLPAPER_DIR}
+  cp -r ${SRC_DIR}/wallpaper/Fluent${theme}                                           ${WALLPAPER_DIR}
 
   if [[ "$round" == '-round' ]]; then
-    cp -r ${SRC_DIR}/wallpaper/${name}${round}${color}                                 ${WALLPAPER_DIR}
+    cp -r ${SRC_DIR}/wallpaper/Fluent${round}${color}                                 ${WALLPAPER_DIR}
   fi
 
   mkdir -p                                                                             ${KVANTUM_DIR}/${name}${round}${theme}${solid}
   cp -r ${SRC_DIR}/Kvantum/Fluent${round}${theme}${solid}/*                            ${KVANTUM_DIR}/${name}${round}${theme}${solid}
 
   if [[ "$color" != '' ]]; then
-    cp -r ${SRC_DIR}/color-schemes/${name}${ctheme}${ccolor}.colors                    ${SCHEMES_DIR}
+    cp -r ${SRC_DIR}/color-schemes/Fluent${ctheme}${ccolor}.colors                    ${SCHEMES_DIR}
     mkdir -p                                                                           ${LOOKFEEL_DIR}/com.github.vinceliuice.${name}${round}${theme}${color}${solid}
-    cp -r ${SRC_DIR}/plasma/look-and-feel/com.github.vinceliuice.${name}${round}${theme}${color}/* ${LOOKFEEL_DIR}/com.github.vinceliuice.${name}${round}${theme}${color}${solid}
+    cp -r ${SRC_DIR}/plasma/look-and-feel/com.github.vinceliuice.Fluent${round}${theme}${color}/* ${LOOKFEEL_DIR}/com.github.vinceliuice.${name}${round}${theme}${color}${solid}
 
     mkdir -p                                                                           ${PLASMA_DIR}/${name}${round}${theme}${color}${solid}
     cp -r ${SRC_DIR}/plasma/desktoptheme/Fluent${round}/*                              ${PLASMA_DIR}/${name}${round}${theme}${color}${solid}
@@ -170,24 +170,24 @@ install() {
     mkdir -p                                                                           ${PLASMA_DIR}/${name}${round}${solid}
     cp -r ${SRC_DIR}/plasma/desktoptheme/Fluent${round}/*                              ${PLASMA_DIR}/${name}${round}${solid}
     mkdir -p                                                                           ${LOOKFEEL_DIR}/com.github.vinceliuice.${name}${round}${solid}
-    cp -r ${SRC_DIR}/plasma/look-and-feel/com.github.vinceliuice.${name}${round}/*     ${LOOKFEEL_DIR}/com.github.vinceliuice.${name}${round}${solid}
+    cp -r ${SRC_DIR}/plasma/look-and-feel/com.github.vinceliuice.Fluent${round}/*     ${LOOKFEEL_DIR}/com.github.vinceliuice.${name}${round}${solid}
   fi
 
-  sed -i "s|Name=Fluent${round}|Name=${name}${round}${theme}${color}${solid}|"         ${PLASMA_DIR}/${name}${round}${theme}${color}${solid}/metadata.desktop
+  sed -i "s|Name=Fluent${round}|Name=Fluent${round}${theme}${color}${solid}|"         ${PLASMA_DIR}/${name}${round}${theme}${color}${solid}/metadata.desktop
 
   if [[ "$solid" == '-solid' ]]; then
     # plasma theme
     cp -r ${SRC_DIR}/plasma/desktoptheme/Fluent${round}${ELSE_LIGHT}${solid}/*         ${PLASMA_DIR}/${name}${round}${theme}${color}${solid}
     sed -i "s|enabled=true|enabled=false|"                                             ${PLASMA_DIR}/${name}${round}${theme}${color}${solid}/metadata.desktop
     rm -rf ${PLASMA_DIR}/${name}${round}${theme}${color}${solid}/{solid,translucent}
-    # global theme
-    sed -i "s|Name=${name}${round}${theme}${color}|Name=${name}${round}${theme}${color}${solid}|" ${LOOKFEEL_DIR}/com.github.vinceliuice.${name}${round}${theme}${color}${solid}/metadata.desktop
-    sed -i "s|Name=com.github.vinceliuice.${name}${round}${theme}${color}|Name=com.github.vinceliuice.${name}${round}${theme}${color}${solid}|" ${LOOKFEEL_DIR}/com.github.vinceliuice.${name}${round}${theme}${color}${solid}/metadata.desktop
-    if [[ "$round" == '-round' ]]; then
-      sed -i "s|theme=__aurorae__svg__${name}${round}${color}|theme=__aurorae__svg__${name}${round}${color}${solid}|" ${LOOKFEEL_DIR}/com.github.vinceliuice.${name}${round}${theme}${color}${solid}/contents/defaults
     fi
-    sed -i "s|name=${name}${round}${theme}${color}|name=${name}${round}${theme}${color}${solid}|" ${LOOKFEEL_DIR}/com.github.vinceliuice.${name}${round}${theme}${color}${solid}/contents/defaults
-  fi
+    # global theme
+    sed -i "s|Name=Fluent${round}${theme}${color}|Name=${name}${round}${theme}${color}${solid}|" ${LOOKFEEL_DIR}/com.github.vinceliuice.${name}${round}${theme}${color}${solid}/metadata.desktop
+    sed -i "s|Name=com.github.vinceliuice.Fluent${round}${theme}${color}|Name=com.github.vinceliuice.${name}${round}${theme}${color}${solid}|" ${LOOKFEEL_DIR}/com.github.vinceliuice.${name}${round}${theme}${color}${solid}/metadata.desktop
+    if [[ "$round" == '-round' ]]; then
+      sed -i "s|theme=__aurorae__svg__Fluent${round}${color}|theme=__aurorae__svg__${name}${round}${color}${solid}|" ${LOOKFEEL_DIR}/com.github.vinceliuice.${name}${round}${theme}${color}${solid}/contents/defaults
+    fi
+    sed -i "s|name=Fluent${round}${theme}${color}|name=${name}${round}${theme}${color}${solid}|" ${LOOKFEEL_DIR}/com.github.vinceliuice.${name}${round}${theme}${color}${solid}/contents/defaults
 
   if [[ "$round" == '-round' ]]; then
     sed -i "s|defaultWallpaperTheme=Fluent|defaultWallpaperTheme=Fluent${round}${color}|" ${PLASMA_DIR}/${name}${round}${theme}${color}${solid}/metadata.desktop
@@ -203,7 +203,7 @@ install_common() {
 while [[ "$#" -gt 0 ]]; do
   case "${1:-}" in
     -n|--name)
-      name="${1}"
+      name="$2"
       shift
       ;;
     --round)
@@ -327,7 +327,7 @@ prompt -i "Installing '${THEME_NAME}${round} kde themes'..."
 
 for theme in "${themes[@]}"; do
   for color in "${colors[@]}"; do
-    install "${_name:-$THEME_NAME}" "$theme" "$color"
+    install "${name:-$THEME_NAME}" "$theme" "$color"
   done
 done
 
